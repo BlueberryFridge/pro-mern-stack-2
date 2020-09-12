@@ -1,8 +1,8 @@
 /*
- * Steps to make an express server:
- * 1) install express package with npm.
- * 2) import express.
- * 3) instantiate express app(s) to be used to listen on port(s).
+ * Steps to make an Express server:
+ * 1) install Express package with npm.
+ * 2) import Express.
+ * 3) instantiate Express app(s) to be used to listen on port(s).
  * 4) declare a middleware to do the work: taking HTTP response and response object
  *    plus the next middleware in the chain.
  * 5) mount the middleware on the application.
@@ -12,7 +12,7 @@ const express = require('express');
 
 //----------------------------------------------------------------------------------------//
 /*
- * Multiple express applications can be made to listen on different ports.
+ * Multiple xpress applications can be made to listen on different ports.
  * Such application can be instantiated with the 'express()' method.
  * However, for this project, we merely need one, which we call 'app'
  */
