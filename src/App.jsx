@@ -1,19 +1,40 @@
-const continents = ['Africa', 'America', 'Asia', 'Australia', 'Europe']
-const helloContinents = Array.from(continents, c => `Hi, ${c}!`);
-const message = helloContinents.join(' ');
+class IssueList extends React.Component {
+    render() {
+        return(
+            <React.Fragment>
+                <h1>Issue Tracker</h1>
+                <IssueFilter />
+                <hr />
+                <IssueTable />
+                <hr />
+                <IssueAdd />
+            </React.Fragment>
+        );
+    }
+}
 
-const element = (
-    <div title="loaded from separate file">
-        <h1>{helloContinents.map(item => {
-                return (
-                    <>
-                    {item}
-                    <br/>
-                    <br/>
-                    </>
-                );}
-        )}</h1>
-    </div>
-);
+class IssueFilter extends React.Component {
+    render() {
+        return(
+            <div>This is a placeholder for issue filter.</div>
+        );
+    }
+}
 
-ReactDOM.render(element, document.getElementById("root"));
+class IssueTable extends React.Component {
+    render() {
+        return(
+            <div>This is a placeholder for a table of issues.</div>
+        );
+    }
+}
+
+class IssueAdd extends React.Component {
+    render() {
+        return(
+            <div>This is a placeholder for a form to add an issue.</div>
+        );
+    }
+}
+
+ReactDOM.render(<IssueList />, document.getElementById("root"));
