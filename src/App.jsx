@@ -50,22 +50,14 @@ class IssueList extends React.Component {
     }
 }
 
-class IssueFilter extends React.Component {
-    render() {
+const IssueFilter = (props) => {
         return(
             <div>This is a placeholder for issue filter.</div>
         );
-    }
 }
 
-class IssueTable extends React.Component {   
-    constructor(props) {
-        super(props);
-    }
-    
-    
-    render() {
-        const issueRows = this.props.issues.map(issue => 
+const IssueTable = (props) => {
+        const issueRows = props.issues.map(issue => 
             <IssueRow key={issue.id} issue={issue}></IssueRow>);
 
         return(
@@ -86,12 +78,10 @@ class IssueTable extends React.Component {
                 </tbody>
             </table>
         );
-    }
 }
 
-class IssueRow extends React.Component {
-    render() {
-        const issue = this.props.issue;
+const IssueRow = (props) => {
+        const issue = props.issue;
         return(
             <tr>
                 <td>{issue.id}</td>
@@ -103,16 +93,11 @@ class IssueRow extends React.Component {
                 <td>{issue.title}</td>
             </tr>
         );
-    }
 }
 
-class IssueAdd extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+const IssueAdd = (props) => {
 
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const form = document.forms.issueAdd;
         const issue = {
@@ -120,20 +105,17 @@ class IssueAdd extends React.Component {
             title: form.title.value,
             status: 'New'
         }
-        this.props.createIssue(issue);
+        props.createIssue(issue);
         form.owner.value = '';
         form.title.value = '';
     }
-
-    render() {
         return(
-            <form name='issueAdd' onSubmit={this.handleSubmit}>
+            <form name='issueAdd' onSubmit={handleSubmit}>
                 <input type='text' name='owner' placeholder='Owner' />
                 <input type='text' name='title' placeholder='Title' />
                 <button>Add</button>
             </form>
         );
-    }
 }
 
 ReactDOM.render(<IssueList />, document.getElementById("root"));
