@@ -1,4 +1,4 @@
-const issues = [
+const initialIssues = [
     {
         id: 1, status: 'New', owner: 'Ravan', effort: 5,
         created: new Date('2018-08-15'), due: undefined,
@@ -11,16 +11,45 @@ const issues = [
     }
 ];
 
+const sampleIssue = {
+    status: 'New', owner: 'Pieta',
+    title: 'Completion date should be optimal'
+};
+
 class IssueList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { issues: [] };
+        this.createIssue = this.createIssue.bind(this);
+    }
+
+    loadData() {
+        setTimeout(() => 
+            this.setState( {issues: initialIssues} )
+        , 500);   
+    }
+
+    createIssue(issue) {
+        issue.id = this.state.issues.length + 1;
+        issue.created = new Date();
+        const newIssueList = this.state.issues.slice();
+        newIssueList.push(issue);
+        this.setState({issues: newIssueList});
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+    
     render() {
         return(
             <React.Fragment>
                 <h1>Issue Tracker</h1>
                 <IssueFilter />
                 <hr />
-                <IssueTable />
+                <IssueTable issues={this.state.issues} />
                 <hr />
-                <IssueAdd />
+                <IssueAdd createIssue={this.createIssue} />
             </React.Fragment>
         );
     }
@@ -35,8 +64,13 @@ class IssueFilter extends React.Component {
 }
 
 class IssueTable extends React.Component {   
+    constructor(props) {
+        super(props);
+    }
+    
+    
     render() {
-        const issueRows = issues.map(issue => 
+        const issueRows = this.props.issues.map(issue => 
             <IssueRow key={issue.id} issue={issue}></IssueRow>);
 
         return(
@@ -78,6 +112,13 @@ class IssueRow extends React.Component {
 }
 
 class IssueAdd extends React.Component {
+    constructor(props) {
+        super(props);
+        setTimeout( () =>
+            this.props.createIssue(sampleIssue)
+        , 2000);
+    }
+
     render() {
         return(
             <div>This is a placeholder for a form to add an issue.</div>
