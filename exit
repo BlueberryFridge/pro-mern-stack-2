@@ -1,0 +1,53 @@
+[33mcommit e95a4d1a2009e89db4586993dd2c2613233126eb[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Tue Sep 15 03:42:44 2020 +0800
+
+    Added state, 'loadData()' and 'createIssue' methods, and simulation for getting data from database
+
+[33mcommit 3d0c2f21cce9366daa4bf03433109550282191a4[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Mon Sep 14 00:28:15 2020 +0800
+
+    Changed table data to object for dynamic composition. Removed inline styles and opted for CSS
+
+[33mcommit 7afffa087c36dcf8c037a29ec44d165f859c029f[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sun Sep 13 22:32:53 2020 +0800
+
+    Added IssueRow components and component class as well as rowStyle
+
+[33mcommit 8325927d82049223e227e210745d61c937aed1ba[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sun Sep 13 21:46:56 2020 +0800
+
+    Repurposed App.jsx into a basic template of the issue tracker. New component classes: IssueList, IssueFilter, IssueTable, and IssueAdd.
+
+[33mcommit 82f898839fdb5d21c3031e93b22aab92ae097e18[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sun Sep 13 03:36:22 2020 +0800
+
+    Added nodemon dependency and 'watch' script, and edited 'start' script in package.json
+
+[33mcommit ff1a75d005dddfd6e1c966fb2df010a0259a940a[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sun Sep 13 02:57:41 2020 +0800
+
+    Edited message in index.html, added 'compile' script in package.json, recompiled App.jsx
+
+[33mcommit e9067b06bf376e8f3a76b7c42c990fd7164e4746[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sun Sep 13 02:41:25 2020 +0800
+
+    Installed babel package, moved server.js to server folder, converted App.jsx to App.js through babel
+
+[33mcommit 53726f994efa1980955be9405121e051104cfd6c[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sat Sep 12 23:39:23 2020 +0800
+
+    Edited README.md
+
+[33mcommit dbc6a42d02711cd68c7ba8cb45e7ea8c94e7a43e[m
+Author: Janine Lapiz <jglapiz@up.edu.ph>
+Date:   Sat Sep 12 23:36:32 2020 +0800
+
+    Added index.html, README.md, and a working server.js
