@@ -1,10 +1,12 @@
+scalar GraphQLDate
+
 type Issue {
     id: Int!
     status: String!
     owner: String!
     effort: Int
-    created: String!
-    due: String
+    created: GraphQLDate!
+    due: GraphQLDate
     title: String!
 }
 

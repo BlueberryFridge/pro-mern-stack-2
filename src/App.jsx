@@ -1,3 +1,10 @@
+const dateRegex = new RegExp('^\\d\\d\\d\\d-\\d\\d-\\d\\d');
+
+const jsonDateReviver = (key, value) => {
+    if(dateRegex.test(value)) return new Date(value);
+    return value;
+}
+
 class IssueList extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +28,8 @@ class IssueList extends React.Component {
             body: JSON.stringify({ query })
             });
 
-        const result = await response.json();
+        const body = await response.text();
+        const result = JSON.parse(body, jsonDateReviver);
         this.setState({issues: result.data.issueList});
     }
 
@@ -88,9 +96,9 @@ const IssueRow = (props) => {
                 <td>{issue.id}</td>
                 <td>{issue.status}</td>
                 <td>{issue.owner}</td>
-                <td>{issue.created}</td>
+                <td>{issue.created.toDateString()}</td>
                 <td>{issue.effort}</td>
-                <td>{issue.due}</td>
+                <td>{issue.due ? issue.due.toDateString() : ''}</td>
                 <td>{issue.title}</td>
             </tr>
         );
