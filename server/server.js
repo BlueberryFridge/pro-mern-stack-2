@@ -10,10 +10,10 @@ const GraphQLDate = new GraphQLScalarType({
     serialize(value) {
         return value.toISOString();
     },
-    parseValue(value) {
-        return new Date(value);
+    parseValue(value) {     //applied { Kind, parseValue }
+        return new Date(value); 
     },
-    parseLiteral(ast) {
+    parseLiteral(ast) {    //applied { Kind, parseValue }
         return (ast.kind == Kind.STRING) ? new Date(ast.value) : undefined;
     }
 });
