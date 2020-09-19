@@ -39,7 +39,7 @@ function testWithCallbacks(callback) {
     });
 }
 
-async function testWithAsync() {
+async function testWithAsync() {  // preferable method than the callback method as this is much cleaner
     console.log('\n--- testWithAsync ---');
     const client = new MongoClient(url, {useUnifiedTopology: true} );
     try {
