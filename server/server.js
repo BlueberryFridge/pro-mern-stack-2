@@ -26,19 +26,6 @@ const GraphQLDate = new GraphQLScalarType({
     }
 });
 
-const issuesDB = [
-    {
-        id: 1, status: 'New', owner: 'Ravan', effort: 5,
-        created: new Date('2018-08-15'), due: undefined,
-        title: 'Error in console when clicking Add'
-    },
-    {
-        id: 2, status: 'Assigned', owner: 'Eddie', effort: 14,
-        created: new Date('2018-08-16'), due: new Date('2018-08-30'),
-        title: 'Missing bottom border on panel'
-    }
-];
-
 const resolvers = {
     Query: {
         about: () => aboutMessage,
@@ -54,6 +41,15 @@ const resolvers = {
 async function issueList() {
     const issues = await db.collection('issues').find({}).toArray();
     return issues;
+}
+
+async function getNextSequence(name) {
+    const result = await db.collection('counters').findOneAndUpdate(
+        { _id: name },
+        { $inc: { current: 1 } },
+        { returnOriginal: false }
+    );
+    return result.value.current;
 }
 
 function setAboutMessage(_, { message }) {
@@ -73,12 +69,14 @@ function validateIssue (issue) {
     }
 }
 
-function issueAdd(_, { issue }) {
+async function issueAdd(_, { issue }) {
     validateIssue(issue);
-    issue.id = issuesDB.length + 1;
+    issue.id = await getNextSequence('issues');
     issue.created = new Date();
-    issuesDB.push(issue);
-    return issue;
+    const result = await db.collection('issues').insertOne(issue);
+    const savedIssue = await db.collection('issues')
+        .findOne({ _id: result.insertedId });
+    return savedIssue;
 }
 
 async function connectToDB() {
