@@ -4,7 +4,7 @@
   "description": "Pro MERN Stack - UI",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -w uiserver.js uiserver.js",
+    "start": "nodemon -w uiserver.js -w .env uiserver.js",
     "compile": "babel src --out-dir public",
     "watch": "babel src --out-dir public --watch --verbose"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/BlueberryFridge/pro-mern-stack-2#readme",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.17.1",
     "nodemon": "^1.19.4"
   },

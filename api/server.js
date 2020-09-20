@@ -4,9 +4,14 @@ const fs = require('fs');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 const { MongoClient } = require('mongodb');
-const url = 'mongodb://localhost/issuetracker';
+
+require('dotenv').config();
+const url = process.env.DB_URL || 'mongodb://localhost/issuetracker';
+const port = process.env.API_SERVER_PORT || 3000;
+
 let aboutMessage = 'Issue Tracker API v1.0';
 let db;
+
 
 const GraphQLDate = new GraphQLScalarType({
     name: 'GraphQLDate',
@@ -102,8 +107,8 @@ server.applyMiddleware({app, path: '/graphql'});
 (async function(){
     try {
         await connectToDB();
-        app.listen(3000, function() {
-            console.log('API server started on port 3000');
+        app.listen(port, function() {
+            console.log(`API server started on port ${port}`);
         });
     } catch(err) { console.log('ERROR:', err); }
 })();
